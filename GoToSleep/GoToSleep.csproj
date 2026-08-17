@@ -1,0 +1,17 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net10.0-windows</TargetFramework>
+    <Nullable>enable</Nullable>
+    <UseWindowsForms>true</UseWindowsForms>
+    <ImplicitUsings>enable</ImplicitUsings>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Chronic.Signed" Version="0.3.2" />
+    <PackageReference Include="Microsoft.Recognizers.Text" Version="1.8.13" />
+    <PackageReference Include="Microsoft.Recognizers.Text.DateTime" Version="1.8.13" />
+  </ItemGroup>
+
+</Project>
