@@ -22,20 +22,33 @@ jobs:
         dotnet-version: '10.0.x'
 
     # build for all patforms
-    - name: Publish Artifacts x64
-      run: dotnet publish GoToSleep/GoToSleep.csproj -c Release -r win-x64 --self-contained true -p:PublishSingleFile=true -p:IncludeNativeLibrariesForSelfExtract=true -p:PublishTrimmed=true -p:EnableCompressionInSingleFile=true -o ./publish/x64
+    - name: Publish Self-Contained x64
+      run: dotnet publish GoToSleep/GoToSleep.csproj -c Release -r win-x64 --self-contained true -p:PublishSingleFile=true -p:IncludeNativeLibrariesForSelfExtract=true -p:EnableCompressionInSingleFile=true -o ./publish/x64
 
-    - name: Publish Artifacts x86
-      run: dotnet publish GoToSleep/GoToSleep.csproj -c Release -r win-x86 --self-contained true -p:PublishSingleFile=true -p:IncludeNativeLibrariesForSelfExtract=true -p:PublishTrimmed=true -p:EnableCompressionInSingleFile=true -o ./publish/x86
+    - name: Publish Self-Contained x86
+      run: dotnet publish GoToSleep/GoToSleep.csproj -c Release -r win-x86 --self-contained true -p:PublishSingleFile=true -p:IncludeNativeLibrariesForSelfExtract=true -p:EnableCompressionInSingleFile=true -o ./publish/x86
 
-    - name: Publish Artifacts arm
-      run: dotnet publish GoToSleep/GoToSleep.csproj -c Release -r win-arm64 --self-contained true -p:PublishSingleFile=true -p:IncludeNativeLibrariesForSelfExtract=true -p:PublishTrimmed=true -p:EnableCompressionInSingleFile=true -o ./publish/arm64
+    - name: Publish Self-Contained arm64
+      run: dotnet publish GoToSleep/GoToSleep.csproj -c Release -r win-arm64 --self-contained true -p:PublishSingleFile=true -p:IncludeNativeLibrariesForSelfExtract=true -p:EnableCompressionInSingleFile=true -o ./publish/arm64
+
+    - name: Publish Framework-Dependent x64
+      run: dotnet publish GoToSleep/GoToSleep.csproj -c Release -r win-x64 --self-contained false -p:PublishSingleFile=true -o ./publish/x64-fd
+
+    - name: Publish Framework-Dependent x86
+      run: dotnet publish GoToSleep/GoToSleep.csproj -c Release -r win-x86 --self-contained false -p:PublishSingleFile=true -o ./publish/x86-fd
+
+    - name: Publish Framework-Dependent arm64
+      run: dotnet publish GoToSleep/GoToSleep.csproj -c Release -r win-arm64 --self-contained false -p:PublishSingleFile=true -o ./publish/arm64-fd
 
     - name: Rename Executables by Architecture
       run: |
-        Get-ChildItem -Path ./publish/x64/*.exe | Rename-Item -NewName { $_.BaseName + "-x64" + $_.Extension }
-        Get-ChildItem -Path ./publish/x86/*.exe | Rename-Item -NewName { $_.BaseName + "-x86" + $_.Extension }
-        Get-ChildItem -Path ./publish/arm64/*.exe | Rename-Item -NewName { $_.BaseName + "-arm64" + $_.Extension }
+        Get-ChildItem -Path ./publish/x64/*.exe | Rename-Item -NewName { $_.BaseName + "-x64_STANDALONE" + $_.Extension }
+        Get-ChildItem -Path ./publish/x86/*.exe | Rename-Item -NewName { $_.BaseName + "-x86_STANDALONE" + $_.Extension }
+        Get-ChildItem -Path ./publish/arm64/*.exe | Rename-Item -NewName { $_.BaseName + "-arm64_STANDALONE" + $_.Extension }
+
+        Get-ChildItem -Path ./publish/x64-fd/*.exe | Rename-Item -NewName { $_.BaseName + "-x64-dotnet" + $_.Extension }
+        Get-ChildItem -Path ./publish/x86-fd/*.exe | Rename-Item -NewName { $_.BaseName + "-x86-dotnet" + $_.Extension }
+        Get-ChildItem -Path ./publish/arm64-fd/*.exe | Rename-Item -NewName { $_.BaseName + "-arm64-dotnet" + $_.Extension }
     
     - name: Create GitHub Release
       uses: softprops/action-gh-release@v2
