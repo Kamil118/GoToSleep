@@ -83,7 +83,12 @@ namespace GoToSleep
                         throw new ArgumentException();
                     }
                 }
-                result = DateTime.Parse((results[0].Resolution["values"] as List<Dictionary<string, string>>)[0]["value"]);
+
+                if(results[0].Resolution["values"] == null)
+                {
+                    throw new ArgumentException();
+                }
+                result = DateTime.Parse((results[0].Resolution["values"] as List<Dictionary<string, string>>)![0]["value"]);
 
             }
             catch (Exception e)

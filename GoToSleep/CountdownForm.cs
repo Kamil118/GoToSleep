@@ -40,7 +40,7 @@ namespace GoToSleep
                     countdown.Text = getTimerText();
                 });
             }
-            catch (Exception e)
+            catch
             {
                 //the window most likely has been closed
                 return;
