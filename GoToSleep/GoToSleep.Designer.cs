@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(GoToSleep));
             comboBox1 = new ComboBox();
             shutdownButton = new Button();
             suspendButton = new Button();
@@ -125,6 +126,7 @@
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(484, 64);
             Controls.Add(tableLayoutPanel2);
+            Icon = (Icon)resources.GetObject("$this.Icon");
             MinimumSize = new Size(500, 103);
             Name = "GoToSleep";
             Text = "Go To Sleep";

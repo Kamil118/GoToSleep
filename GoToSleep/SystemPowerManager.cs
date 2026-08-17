@@ -64,7 +64,17 @@ namespace GoToSleep
                 timeString = prepareTimeString(timeString);
                 //var tmp = parser.Parse(timeString);
 
-                var results = DateTimeRecognizer.RecognizeDateTime(timeString, CultureInfo.CurrentCulture.ToString());
+                List<ModelResult>? results = null;
+
+                try
+                {
+                    results = DateTimeRecognizer.RecognizeDateTime(timeString, CultureInfo.CurrentCulture.ToString());
+                }
+                catch
+                {
+                    //results remain null, will go into fallback
+                }
+
                 if (results == null || results.Count == 0)
                 {
                     results = DateTimeRecognizer.RecognizeDateTime(timeString, Culture.English);
@@ -73,7 +83,6 @@ namespace GoToSleep
                         throw new ArgumentException();
                     }
                 }
-
                 result = DateTime.Parse((results[0].Resolution["values"] as List<Dictionary<string, string>>)[0]["value"]);
 
             }
