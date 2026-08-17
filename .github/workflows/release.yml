@@ -9,6 +9,9 @@ jobs:
   build-and-release:
     runs-on: windows-latest
 
+    permissions:
+      contents: write
+
     steps:
     - name: Checkout Code
       uses: actions/checkout@v4
@@ -31,6 +34,11 @@ jobs:
     - name: Publish Artifacts arm
       run: dotnet publish -c Release -r win-arm64 --self-contained true -p:PublishSingleFile=true -p:IncludeNativeLibrariesForSelfExtract=true -o ./publish/arm
 
+    - name: Rename Executables by Architecture
+      run: |
+        Get-ChildItem -Path ./publish/x64/*.exe | Rename-Item -NewName { $_.BaseName + "-x64" + $_.Extension }
+        Get-ChildItem -Path ./publish/x86/*.exe | Rename-Item -NewName { $_.BaseName + "-x86" + $_.Extension }
+        Get-ChildItem -Path ./publish/arm64/*.exe | Rename-Item -NewName { $_.BaseName + "-arm64" + $_.Extension }
     # Step 6: Create a new GitHub Release and upload the ZIP file
     - name: Create GitHub Release
       uses: softprops/action-gh-release@v2
