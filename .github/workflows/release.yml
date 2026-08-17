@@ -26,13 +26,13 @@ jobs:
 
     # build for all patforms
     - name: Publish Artifacts x64
-      run: dotnet publish -c Release -r win-x64 --self-contained true -p:PublishSingleFile=true -p:IncludeNativeLibrariesForSelfExtract=true -o ./publish/x64
+      run: dotnet publish GoToSleep/GoToSleep.csproj -c Release -r win-x64 --self-contained true -p:PublishSingleFile=true -p:IncludeNativeLibrariesForSelfExtract=true -o ./publish/x64
 
     - name: Publish Artifacts x86
-      run: dotnet publish -c Release -r win-x86 --self-contained true -p:PublishSingleFile=true -p:IncludeNativeLibrariesForSelfExtract=true -o ./publish/x86
+      run: dotnet publish GoToSleep/GoToSleep.csproj -c Release -r win-x86 --self-contained true -p:PublishSingleFile=true -p:IncludeNativeLibrariesForSelfExtract=true -o ./publish/x86
 
     - name: Publish Artifacts arm
-      run: dotnet publish -c Release -r win-arm64 --self-contained true -p:PublishSingleFile=true -p:IncludeNativeLibrariesForSelfExtract=true -o ./publish/arm
+      run: dotnet publish GoToSleep/GoToSleep.csproj -c Release -r win-arm64 --self-contained true -p:PublishSingleFile=true -p:IncludeNativeLibrariesForSelfExtract=true -o ./publish/arm
 
     - name: Rename Executables by Architecture
       run: |
