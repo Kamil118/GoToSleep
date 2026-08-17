@@ -21,9 +21,6 @@ jobs:
       with:
         dotnet-version: '10.0.x'
 
-    - name: Build with dotnet
-      run: dotnet build --configuration Release
-
     # build for all patforms
     - name: Publish Artifacts x64
       run: dotnet publish GoToSleep/GoToSleep.csproj -c Release -r win-x64 --self-contained true -p:PublishSingleFile=true -p:IncludeNativeLibrariesForSelfExtract=true -o ./publish/x64
@@ -32,14 +29,14 @@ jobs:
       run: dotnet publish GoToSleep/GoToSleep.csproj -c Release -r win-x86 --self-contained true -p:PublishSingleFile=true -p:IncludeNativeLibrariesForSelfExtract=true -o ./publish/x86
 
     - name: Publish Artifacts arm
-      run: dotnet publish GoToSleep/GoToSleep.csproj -c Release -r win-arm64 --self-contained true -p:PublishSingleFile=true -p:IncludeNativeLibrariesForSelfExtract=true -o ./publish/arm
+      run: dotnet publish GoToSleep/GoToSleep.csproj -c Release -r win-arm64 --self-contained true -p:PublishSingleFile=true -p:IncludeNativeLibrariesForSelfExtract=true -o ./publish/arm64
 
     - name: Rename Executables by Architecture
       run: |
         Get-ChildItem -Path ./publish/x64/*.exe | Rename-Item -NewName { $_.BaseName + "-x64" + $_.Extension }
         Get-ChildItem -Path ./publish/x86/*.exe | Rename-Item -NewName { $_.BaseName + "-x86" + $_.Extension }
         Get-ChildItem -Path ./publish/arm64/*.exe | Rename-Item -NewName { $_.BaseName + "-arm64" + $_.Extension }
-    # Step 6: Create a new GitHub Release and upload the ZIP file
+    
     - name: Create GitHub Release
       uses: softprops/action-gh-release@v2
       with:
@@ -49,4 +46,4 @@ jobs:
         prerelease: false
         files: ./publish/**/*.exe 
       env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # Provided automatically by GitHub
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
