@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Text;
 using System.Windows.Forms.Design;
-using Chronic;
 using System.Diagnostics;
 using System.Windows.Forms;
 using System.Text.RegularExpressions;
@@ -40,8 +39,6 @@ namespace GoToSleep
             parentForm = pf;
         }
         Form parentForm;
-
-        Chronic.Parser parser = new Chronic.Parser();
 
         string prepareTimeString(string s)
         {
