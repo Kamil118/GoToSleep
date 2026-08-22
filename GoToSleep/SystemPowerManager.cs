@@ -13,11 +13,14 @@ namespace GoToSleep
 {
     internal class SystemPowerManager
     {
+        private static int TIMER_WARNING_SECONDS = 15;
+
+
         [Serializable]
         class DatetimeStringException : Exception
         {
             public DatetimeStringException(string message) : base(message) { }
-            public DatetimeStringException(Exception e) : base("Conversion failed.", e) { }
+            public DatetimeStringException(Exception e) : base("Conversion from string to time failed.", e) { }
         }
 
         [Serializable]
@@ -62,7 +65,6 @@ namespace GoToSleep
             try
             {
                 timeString = prepareTimeString(timeString);
-                //var tmp = parser.Parse(timeString);
 
                 List<ModelResult>? results = null;
 
@@ -77,6 +79,7 @@ namespace GoToSleep
 
                 if (results == null || results.Count == 0)
                 {
+                    //try converting using english as fallback
                     results = DateTimeRecognizer.RecognizeDateTime(timeString, Culture.English);
                     if (results == null || results.Count == 0)
                     {
@@ -104,6 +107,21 @@ namespace GoToSleep
             return result;
         }
 
+        bool confirmDate(DateTime target, string action)
+        {
+            if (target <= DateTime.Now.AddSeconds(TIMER_WARNING_SECONDS))
+            {
+                //the number will be always off by a fraction of a second, so round it up
+                if (MessageBox.Show($"Are you sure you want to schedule {action} in just {Math.Ceiling((target - DateTime.Now).TotalSeconds)} seconds?", "Confirm", MessageBoxButtons.YesNo,MessageBoxIcon.Question) == DialogResult.Yes)
+                {
+                    return true;
+                }
+                return false;
+            }
+            //warning threshold not met
+            return true;
+        }
+
         public void shutdown(string timeString)
         {
             DateTime target;
@@ -114,6 +132,11 @@ namespace GoToSleep
             catch (Exception)
             {
                 throw;
+            }
+
+            if(!confirmDate(target,"shutdown"))
+            {
+                return;
             }
 
             using (var progressPopup = new CountdownForm(PowerDownData.Shutdown(target)))
@@ -134,6 +157,11 @@ namespace GoToSleep
                 throw;
             }
 
+            if (!confirmDate(target, "suspension"))
+            {
+                return;
+            }
+
             using (var progressPopup = new CountdownForm(PowerDownData.Suspend(target)))
             {
                 progressPopup.ShowDialog(parentForm);
@@ -152,7 +180,35 @@ namespace GoToSleep
                 throw;
             }
 
+            if (!confirmDate(target, "hibernation"))
+            {
+                return;
+            }
+
             using (var progressPopup = new CountdownForm(PowerDownData.Hibernate(target)))
+            {
+                progressPopup.ShowDialog(parentForm);
+            }
+        }
+
+        public void restart(string timeString)
+        {
+            DateTime target;
+            try
+            {
+                target = getTimeOffsetFromString(timeString);
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+
+            if (!confirmDate(target, "restart"))
+            {
+                return;
+            }
+
+            using (var progressPopup = new CountdownForm(PowerDownData.Restart(target)))
             {
                 progressPopup.ShowDialog(parentForm);
             }

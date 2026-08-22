@@ -38,6 +38,16 @@ namespace GoToSleep
                 Process.Start(psi);
             });
         }
+
+        public static PowerDownData Restart(DateTime when)
+        {
+            return new PowerDownData(PowerDownType.Shutdown, when, () => {
+                var psi = new ProcessStartInfo("shutdown", "/r /t 0");
+                psi.CreateNoWindow = true;
+                psi.UseShellExecute = false;
+                Process.Start(psi);
+            });
+        }
         public static PowerDownData Suspend(DateTime when)
         {
             return new PowerDownData(PowerDownType.Suspend, when, () => {

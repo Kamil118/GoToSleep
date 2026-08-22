@@ -36,6 +36,7 @@
             textBox1 = new TextBox();
             tableLayoutPanel2 = new TableLayoutPanel();
             flowLayoutPanel1 = new FlowLayoutPanel();
+            button1 = new Button();
             tableLayoutPanel2.SuspendLayout();
             flowLayoutPanel1.SuspendLayout();
             SuspendLayout();
@@ -53,7 +54,7 @@
             // 
             // shutdownButton
             // 
-            shutdownButton.Location = new Point(185, 3);
+            shutdownButton.Location = new Point(263, 3);
             shutdownButton.Margin = new Padding(3, 3, 0, 3);
             shutdownButton.Name = "shutdownButton";
             shutdownButton.Size = new Size(75, 23);
@@ -64,7 +65,7 @@
             // 
             // suspendButton
             // 
-            suspendButton.Location = new Point(104, 3);
+            suspendButton.Location = new Point(182, 3);
             suspendButton.Name = "suspendButton";
             suspendButton.Size = new Size(75, 23);
             suspendButton.TabIndex = 2;
@@ -74,7 +75,7 @@
             // 
             // hibernateButton
             // 
-            hibernateButton.Location = new Point(23, 3);
+            hibernateButton.Location = new Point(101, 3);
             hibernateButton.Name = "hibernateButton";
             hibernateButton.Size = new Size(75, 23);
             hibernateButton.TabIndex = 3;
@@ -114,11 +115,22 @@
             flowLayoutPanel1.Controls.Add(shutdownButton);
             flowLayoutPanel1.Controls.Add(suspendButton);
             flowLayoutPanel1.Controls.Add(hibernateButton);
+            flowLayoutPanel1.Controls.Add(button1);
             flowLayoutPanel1.FlowDirection = FlowDirection.RightToLeft;
-            flowLayoutPanel1.Location = new Point(221, 33);
+            flowLayoutPanel1.Location = new Point(143, 33);
             flowLayoutPanel1.Name = "flowLayoutPanel1";
-            flowLayoutPanel1.Size = new Size(260, 41);
+            flowLayoutPanel1.Size = new Size(338, 41);
             flowLayoutPanel1.TabIndex = 7;
+            // 
+            // button1
+            // 
+            button1.Location = new Point(20, 3);
+            button1.Name = "button1";
+            button1.Size = new Size(75, 23);
+            button1.TabIndex = 4;
+            button1.Text = "Restart";
+            button1.UseVisualStyleBackColor = true;
+            button1.Click += restart_Click;
             // 
             // GoToSleep
             // 
@@ -145,5 +157,6 @@
         private TextBox textBox1;
         private TableLayoutPanel tableLayoutPanel2;
         private FlowLayoutPanel flowLayoutPanel1;
+        private Button button1;
     }
 }

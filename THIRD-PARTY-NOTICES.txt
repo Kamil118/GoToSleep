@@ -1,0 +1,142 @@
+﻿License notice for Microsoft.Recognizers.Text (v1.8.13)
+------------------------------------
+
+https://github.com/Microsoft/Recognizers-Text
+
+Copyright © Microsoft Corporation. All rights reserved.
+
+Licensed under MIT
+
+Available at https://licenses.nuget.org/MIT
+
+
+License notice for Microsoft.Recognizers.Text.DateTime (v1.8.13)
+------------------------------------
+
+https://github.com/Microsoft/Recognizers-Text
+
+Copyright © Microsoft Corporation. All rights reserved.
+
+Licensed under MIT
+
+Available at https://licenses.nuget.org/MIT
+
+
+License notice for Microsoft.Extensions.Caching.Abstractions (v2.2.0)
+------------------------------------
+
+https://github.com/aspnet/Extensions at 9bc79b2f25a3724376d7af19617c33749a30ea3a
+
+https://asp.net/
+
+Copyright © Microsoft Corporation. All rights reserved.
+
+License available at https://raw.githubusercontent.com/aspnet/AspNetCore/2.0.0/LICENSE.txt
+
+
+License notice for Microsoft.Extensions.Caching.Memory (v2.2.0)
+------------------------------------
+
+https://github.com/aspnet/Extensions at 9bc79b2f25a3724376d7af19617c33749a30ea3a
+
+https://asp.net/
+
+Copyright © Microsoft Corporation. All rights reserved.
+
+License available at https://raw.githubusercontent.com/aspnet/AspNetCore/2.0.0/LICENSE.txt
+
+
+License notice for Microsoft.Extensions.DependencyInjection.Abstractions (v2.2.0)
+------------------------------------
+
+https://github.com/aspnet/Extensions at 9bc79b2f25a3724376d7af19617c33749a30ea3a
+
+https://asp.net/
+
+Copyright © Microsoft Corporation. All rights reserved.
+
+License available at https://raw.githubusercontent.com/aspnet/AspNetCore/2.0.0/LICENSE.txt
+
+
+License notice for Microsoft.Extensions.Options (v2.2.0)
+------------------------------------
+
+https://github.com/aspnet/Extensions at 9bc79b2f25a3724376d7af19617c33749a30ea3a
+
+https://asp.net/
+
+Copyright © Microsoft Corporation. All rights reserved.
+
+License available at https://raw.githubusercontent.com/aspnet/AspNetCore/2.0.0/LICENSE.txt
+
+
+License notice for Microsoft.Extensions.Primitives (v2.2.0)
+------------------------------------
+
+https://github.com/aspnet/Extensions at 9bc79b2f25a3724376d7af19617c33749a30ea3a
+
+https://asp.net/
+
+Copyright © Microsoft Corporation. All rights reserved.
+
+License available at https://raw.githubusercontent.com/aspnet/AspNetCore/2.0.0/LICENSE.txt
+
+
+License notice for Microsoft.Recognizers.Definitions (v1.8.13)
+------------------------------------
+
+https://github.com/Microsoft/Recognizers-Text
+
+Copyright © Microsoft Corporation. All rights reserved.
+
+Licensed under MIT
+
+Available at https://licenses.nuget.org/MIT
+
+
+License notice for Microsoft.Recognizers.Text.DataTypes.TimexExpression (v1.8.13)
+------------------------------------
+
+https://github.com/Microsoft/Recognizers-Text
+
+Copyright © Microsoft Corporation. All rights reserved.
+
+Licensed under MIT
+
+Available at https://licenses.nuget.org/MIT
+
+
+License notice for Microsoft.Recognizers.Text.Number (v1.8.13)
+------------------------------------
+
+https://github.com/Microsoft/Recognizers-Text
+
+Copyright © Microsoft Corporation. All rights reserved.
+
+Licensed under MIT
+
+Available at https://licenses.nuget.org/MIT
+
+
+License notice for Microsoft.Recognizers.Text.NumberWithUnit (v1.8.13)
+------------------------------------
+
+https://github.com/Microsoft/Recognizers-Text
+
+Copyright © Microsoft Corporation. All rights reserved.
+
+Licensed under MIT
+
+Available at https://licenses.nuget.org/MIT
+
+
+License notice for System.ComponentModel.Annotations (v4.5.0)
+------------------------------------
+
+https://dot.net/
+
+Copyright © Microsoft Corporation.  All rights reserved.
+
+License available at https://github.com/dotnet/corefx/blob/master/LICENSE.TXT
+
+
