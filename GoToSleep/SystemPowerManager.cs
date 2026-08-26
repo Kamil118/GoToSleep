@@ -43,6 +43,8 @@ namespace GoToSleep
         }
         Form parentForm;
 
+        CountdownForm? progressPopup;
+
         string prepareTimeString(string s)
         {
             // make sure there are spaces between numbers and units, for the parser
@@ -139,10 +141,9 @@ namespace GoToSleep
                 return;
             }
 
-            using (var progressPopup = new CountdownForm(PowerDownData.Shutdown(target)))
-            {
-                progressPopup.ShowDialog(parentForm);
-            }
+            progressPopup = new CountdownForm(PowerDownData.Shutdown(target), parentForm);
+            progressPopup.Show();
+            parentForm.Enabled = false;
         }
 
         public void suspend(string timeString)
@@ -162,10 +163,9 @@ namespace GoToSleep
                 return;
             }
 
-            using (var progressPopup = new CountdownForm(PowerDownData.Suspend(target)))
-            {
-                progressPopup.ShowDialog(parentForm);
-            }
+            progressPopup = new CountdownForm(PowerDownData.Suspend(target), parentForm);
+            progressPopup.Show();
+            parentForm.Enabled = false;
         }
 
         public void hibernate(string timeString)
@@ -185,10 +185,9 @@ namespace GoToSleep
                 return;
             }
 
-            using (var progressPopup = new CountdownForm(PowerDownData.Hibernate(target)))
-            {
-                progressPopup.ShowDialog(parentForm);
-            }
+            progressPopup = new CountdownForm(PowerDownData.Hibernate(target), parentForm);
+            progressPopup.Show();
+            parentForm.Enabled = false;
         }
 
         public void restart(string timeString)
@@ -208,10 +207,9 @@ namespace GoToSleep
                 return;
             }
 
-            using (var progressPopup = new CountdownForm(PowerDownData.Restart(target)))
-            {
-                progressPopup.ShowDialog(parentForm);
-            }
+            progressPopup = new CountdownForm(PowerDownData.Restart(target), parentForm);
+            progressPopup.Show();
+            parentForm.Enabled = false;
         }
     }
 }
