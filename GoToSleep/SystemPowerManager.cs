@@ -143,7 +143,6 @@ namespace GoToSleep
 
             progressPopup = new CountdownForm(PowerDownData.Shutdown(target), parentForm);
             progressPopup.Show();
-            parentForm.Enabled = false;
         }
 
         public void suspend(string timeString)
@@ -165,7 +164,6 @@ namespace GoToSleep
 
             progressPopup = new CountdownForm(PowerDownData.Suspend(target), parentForm);
             progressPopup.Show();
-            parentForm.Enabled = false;
         }
 
         public void hibernate(string timeString)
@@ -187,7 +185,6 @@ namespace GoToSleep
 
             progressPopup = new CountdownForm(PowerDownData.Hibernate(target), parentForm);
             progressPopup.Show();
-            parentForm.Enabled = false;
         }
 
         public void restart(string timeString)
@@ -209,7 +206,6 @@ namespace GoToSleep
 
             progressPopup = new CountdownForm(PowerDownData.Restart(target), parentForm);
             progressPopup.Show();
-            parentForm.Enabled = false;
         }
     }
 }

@@ -160,6 +160,7 @@
             MinimumSize = new Size(500, 135);
             Name = "CountdownForm";
             Text = "CountdownForm";
+            Shown += CountdownForm_Shown;
             Resize += onResize;
             tableLayoutPanel1.ResumeLayout(false);
             tableLayoutPanel1.PerformLayout();

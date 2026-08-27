@@ -13,7 +13,7 @@ namespace GoToSleep
 {
     public partial class CountdownForm : Form
     {
-        public bool active = true;
+        public volatile bool active = true;
         private PowerDownData task;
         private Thread taskThread;
 
@@ -50,6 +50,7 @@ namespace GoToSleep
             trayIcon.Text = task.actionType.ToString() + "\n" + countdown.Text;
 
         }
+
         string getTimerText()
         {
             var timeRemaining = task.when - DateTime.Now;
@@ -116,16 +117,10 @@ namespace GoToSleep
 
         protected override void OnFormClosing(FormClosingEventArgs e)
         {
-            if (e.CloseReason == CloseReason.None && this.Visible == false)
-            {
-                // the window has been minimzed to tray, do not destroy it
-                e.Cancel = true;
-                return;
-            }
             parent.Enabled = true;
             trayIcon.Visible = false;
-            base.OnFormClosing(e);
             active = false;
+            base.OnFormClosing(e);
         }
 
         private void countdown_Click(object sender, EventArgs e)
@@ -174,6 +169,11 @@ namespace GoToSleep
             parent.Visible = true;
             trayIcon.Visible = false;
             cancel_Click(sender, e);
+        }
+
+        private void CountdownForm_Shown(object sender, EventArgs e)
+        {
+            parent.Enabled = false;
         }
     }
 }
